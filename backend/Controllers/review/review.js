@@ -100,6 +100,41 @@ async function getAllReviews(req, res) {
   }
 }
 
+async function getReviewById(req, res) {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid review ID format"
+      });
+    }
+
+    const review = await ReviewModel.findById(id)
+      .populate("productId")
+      .populate("orderId")
+      .populate({
+        path: "userId",
+        select: "name email"
+      });
+
+    if (!review) {
+      return res.status(404).json({
+        success: false,
+        message: "Review not found"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: review
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+}
+
 async function getFiveStarReviews(req, res) {
   try {
     const reviews = await ReviewModel.find({rating: Number(5)})
@@ -120,5 +155,5 @@ async function getFiveStarReviews(req, res) {
   }
 }
 module.exports = {
-  getAllReviews,createReview, getFiveStarReviews
+  getAllReviews,createReview, getFiveStarReviews, getReviewById
 };

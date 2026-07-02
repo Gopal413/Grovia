@@ -93,7 +93,7 @@ function CustomerReview(props) {
 
   async function getReview() {
     try {
-      let response = await api.get('/customer/review');
+      let response = await api.get('/review/getreview/${id}');
       if (response.data && response.data.length > 0) {
         const formattedData = response.data.map(item => ({
           ...item,
