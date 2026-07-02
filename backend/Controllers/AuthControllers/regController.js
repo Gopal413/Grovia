@@ -132,7 +132,8 @@ async function regController(req, res) {
             name: body.name,
             email: decoded.email, // Use the verified email from the token
             password: hashedPassword,
-            phone: body.phone
+            phone: body.phone,
+            isVerified: true // User is verified upon successful registration
         });
 
         if (!userToProcess) {
@@ -142,7 +143,7 @@ async function regController(req, res) {
         }
 
         res.status(200).json({
-            message: "User registered successfully, please verify your email",
+            message: "User registered successfully",
             
         })
 
