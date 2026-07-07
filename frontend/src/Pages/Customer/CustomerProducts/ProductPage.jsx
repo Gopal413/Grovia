@@ -523,7 +523,7 @@ export default function ProductPage() {
           <Typography color="text.secondary">No features available</Typography>
         )}
       </Paper>
-      <CustomerReview id={{ id: product?._id }} />
+      <CustomerReview productId={{ id: product?._id }} />
     </Box>
   );
 }

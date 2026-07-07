@@ -41,7 +41,7 @@ api.interceptors.response.use(
                 // Make a request to your refresh token endpoint
                 const { data } = await axios.post('http://localhost:4500/auth/refresh-token', 
                     {refreshToken: refreshToken},
-                    { withCredentials: true }
+                   
                 );
 
                 // Store the new access token

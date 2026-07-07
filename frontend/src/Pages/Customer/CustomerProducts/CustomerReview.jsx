@@ -58,92 +58,55 @@ import {
 import Grid from '@mui/material/Grid'; // Using MUI's latest responsive Grid
 
 function CustomerReview(props) {
-  const {id}= props;
-  // Customized default mock data for PowerBites (Nutritious Food Brand)
-  const [reviews, setReview] = useState([
-    { 
-      name: 'Sarah Jenkins', 
-      url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330", 
-      date: '12/05/2026', 
-      rating: 5.0, 
-      comment: 'PowerBites are a total game-changer for my busy mornings! They taste amazing, fill me up completely, and give me sustained energy without the sugar crash.' 
-    },
-    { 
-      name: 'Marcus Chen', 
-      url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d", 
-      date: '14/05/2026', 
-      rating: 4.5, 
-      comment: 'Perfect post-workout fuel! It is incredibly hard to find clean, high-protein snacks that actually taste this good. The peanut butter crunch is my absolute favorite.' 
-    },
-    { 
-      name: 'Elena Rostova', 
-      url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb", 
-      date: '18/05/2026', 
-      rating: 5.0, 
-      comment: 'As a nutritionist, I highly approve of the ingredient list. No fillers, just real whole foods. Plus, my kids think they are eating dessert!' 
-    },
-    { 
-      name: 'David Miller', 
-      url: "", // Testing fallback to first letter 'D'
-      date: '20/05/2026', 
-      rating: 4.0, 
-      comment: 'Great healthy alternative to sugary granola bars. Perfect for keeping in my office desk drawer when the 3 PM cravings hit.' 
-    },
-  ]);
-
-  async function getReview() {
-    try {
-      let response = await api.get('/review/getreview/${id}');
-      if (response.data && response.data.length > 0) {
-        const formattedData = response.data.map(item => ({
-          ...item,
-          rating: parseFloat(item.rating) || 0
-        }));
-        setReview(formattedData);
-      }
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-    }
-  }
+  const { productId } = props;
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getReview();
-  }, []);
+    const getReviews = async () => {
+      if (!productId) {
+        setLoading(false);
+        return;
+      }
+      try {
+        setLoading(true);
+        const response = await api.get(`/review/product/${productId}`);
+        if (response.data.success) {
+          const formattedData = response.data.data.map(item => ({
+            ...item,
+            name: item.userId?.name || 'Anonymous',
+            date: new Date(item.createdAt).toLocaleDateString(),
+            rating: parseFloat(item.rating) || 0,
+            comment: item.review
+          }));
+          setReviews(formattedData);
+        }
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+        setReviews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getReviews();
+  }, [productId]);
 
   return (
     <Box sx={{ p: { xs: 2 }, maxWidth: '1200px', mt: 3 }}>
-      
-      {/* Header Section themed for PowerBites */}
-      {/* <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
-        <Typography 
-          variant="h3" 
-          component="h1" 
-          sx={{ 
-            fontWeight: 800, 
-            fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem' },
-            color: '#2E7D32', // Nutritious healthy green color
-            mb: 1,
-            letterSpacing: '-0.5px'
-          }}
-        >
-          Loved by PowerBites Lovers
-        </Typography>
-        <Typography 
-          variant="h6" 
-          sx={{ 
-            fontWeight: 400, 
-            fontSize: { xs: '1rem', sm: '1.2rem' },
-            color: 'text.secondary' 
-          }}
-        >
-          See how our clean, nutritious energy bites are fueling everyday lives.
-        </Typography>
-      </Box> */}
 
       {/* Responsive Grid System: Stacks on mobile, splits into 2 on tablet, splits into 3 on desktop */}
+      {loading ? (
+        <Typography>Loading reviews...</Typography>
+      ) : reviews.length === 0 ? (
+        <Card sx={{ p: 4, textAlign: 'center', borderRadius: 4, border: '1px solid #E8F5E9' }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, color: '#1B5E20' }}>No Reviews Yet</Typography>
+          <Typography color="text.secondary">Be the first to share your thoughts on this product!</Typography>
+        </Card>
+      ) : (
       <Grid container spacing={{ xs: 2, md: 3 }}>
         {reviews.map((item, index) => (
-          <Grid size={{ xs: 12}} key={index}>
+          <Grid size={{ xs: 12}} key={item._id || index}>
             <Card 
               sx={{ 
                 height: '100%', 
@@ -165,7 +128,7 @@ function CustomerReview(props) {
                 {/* User Header Info */}
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
                   <Avatar 
-                    src={item.url} 
+                    src={item.userId?.profilePicture} // Assuming you might have a user profile picture
                     alt={item.name} 
                     sx={{ 
                       width: 48, 
@@ -219,6 +182,7 @@ function CustomerReview(props) {
           </Grid>
         ))}
       </Grid>
+      )}
     </Box>
   );
 }

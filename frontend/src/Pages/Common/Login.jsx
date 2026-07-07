@@ -54,10 +54,13 @@ function Login() {
 
     setLoading(true);
     try {
-      formData.email =formData.email.toLowerCase();
-      console.log("Logging in with:", formData);
-      // TODO: Integrate your actual API Authentication call here
-    let response = await api.post("/auth/login",formData);
+      const payload = {
+        ...formData,
+        email: formData.email.toLowerCase(),
+      };
+
+      console.log("Logging in with:", payload);
+      let response = await api.post("/auth/login", payload);
 
     console.log("res data :",response.data)
     
@@ -81,7 +84,7 @@ function Login() {
     console.log("error ",err); 
     if(err.response?.data?.isVerified === false){
       setSnackbar({ open: true, message: err.response?.data?.message || "Please verify your account before logging in.", severity: "error" });
-      setTimeout(() => navigate(`/verify-otp/${err.response?.data?.user}`), 1500);
+      setTimeout(() => navigate(`/verify-email`), 1500);
     }
     else if(err.response?.data?.isUser === true){
       setSnackbar({ open: true, message: err.response?.data?.message || "Account not found. Please register.", severity: "error" });

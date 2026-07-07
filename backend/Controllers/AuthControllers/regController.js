@@ -109,16 +109,14 @@ async function verifyOtp(req, res) {
 
 async function regController(req, res) {
     try {
-        let body = req.body;
+        const { name, password, phone } = req.body;
         let head = req.headers.authorization;
         let token = head.split(" ")[1];
 
         let decoded = decodeToken(token, res);
         if (res.headersSent) return;
 
-        // The email from the body is not needed here, as the verified email is in the token.
-
-        if (!body.name  || !body.password || !body.phone) {
+        if (!name  || !password || !phone) {
             return res.status(400).json({
                 message: "All fields are required"
             })
@@ -126,13 +124,13 @@ async function regController(req, res) {
 
         // Hash the password before saving
         const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(body.password, salt);
+        const hashedPassword = await bcrypt.hash(password, salt);
 
         let userToProcess = await userModel.create({
-            name: body.name,
+            name: name,
             email: decoded.email, // Use the verified email from the token
             password: hashedPassword,
-            phone: body.phone,
+            phone: phone,
             isVerified: true // User is verified upon successful registration
         });
 
