@@ -24,7 +24,7 @@ function Register() {
   });
 
   useEffect(() => {
-    const securityToken = localStorage.getItem("powerbites_auth_handshake_token");
+    const securityToken = localStorage.getItem("grovia_auth_handshake_token");
     console.log("securityToken :",securityToken)
     if (!securityToken) {
       setSnackbar({ open: true, message: "Session tracing timeline invalid. Re-routing to entry.", severity: "error" });
@@ -83,14 +83,14 @@ function Register() {
 
       let res = await api.post("/auth/register", registrationPayload, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("powerbites_auth_handshake_token")}`,
+          Authorization: `Bearer ${localStorage.getItem("grovia_auth_handshake_token")}`,
         },
       });
       console.log("register :",res)
       showToast("Account created successfully!", "success");
       
       // Complete cleanup of temporary storage keys
-      localStorage.removeItem("powerbites_auth_handshake_token");
+      //localStorage.removeItem("grovia_auth_handshake_token");
 
       setFormData({ name: "", password: "", confirmPassword: "", phone: "" });
       setTimeout(() => navigate("/login"), 1500);
@@ -107,7 +107,7 @@ function Register() {
       sx={{ 
         width: '100%', 
         minHeight: '100vh', 
-        background: 'linear-gradient(180deg, #3519B3 0%, #1E1154 100%)', 
+        background: 'radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 45%), #090D1A', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
@@ -116,15 +116,37 @@ function Register() {
     >
       <MainAuthCard 
         leftContent={
-          <Stack sx={{ maxWidth: 350, width: "100%", textAlign: "center", color: "#fff", px: 2 }} spacing={2}>
-            <Typography variant="h3" fontWeight={800}>PowerBites</Typography>
-            <Typography variant="h5" sx={{ fontWeight: 600, color: '#4ade80' }}>
-              Finalize Your Profile
+          <Box 
+            sx={{
+              width: "100%",
+              height: "100%", 
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              gap: 2,
+              color: 'white'
+            }}
+          >
+            <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Grovia
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.85, lineHeight: 1.6 }}>
-              Your communication email channel has been successfully confirmed. Wrap up your basic profile data parameters below.
+            <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
+              E-Commerce Web Application
             </Typography>
-          </Stack>
+            
+            <Box sx={{ width: '60px', height: '4px', bgcolor: '#6366F1', borderRadius: '2px', my: 1 }} />
+
+            <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
+              <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                Empowering local cooks and supporting small businesses. Grovia helps you start your culinary journey and build a sustainable local economy.
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
+                — Grovia Community
+              </Typography>
+            </Box>
+          </Box>
         }
         rightContent={
           <AuthCard title="Create Profile" sx={{ width: "100%", boxShadow: "none", bgcolor: "transparent" }}>
@@ -132,11 +154,16 @@ function Register() {
               
               <TextField
                 fullWidth
-                label="Email"
+                label="Email Address"
                 name="email"
                 value={verifiedEmail}
                 disabled
                 margin="normal"
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
 
               <TextField
@@ -150,6 +177,11 @@ function Register() {
                 autoComplete="name"
                 margin="normal"
                 required
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
               
               <TextField
@@ -164,6 +196,11 @@ function Register() {
                 autoComplete="tel"
                 margin="normal"
                 required
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
 
               <PasswordField
@@ -177,6 +214,11 @@ function Register() {
                 autoComplete="new-password"
                 margin="normal"
                 required
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
               
               <PasswordField
@@ -190,6 +232,11 @@ function Register() {
                 autoComplete="new-password"
                 margin="normal"
                 required
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
 
               <Button
@@ -197,7 +244,18 @@ function Register() {
                 fullWidth
                 variant="contained"
                 disabled={!isFormValid || loading}
-                sx={{ mt: 4, py: 1.3, fontWeight: "bold", borderRadius: 2, bgcolor: '#4A1BF1' }}
+                sx={{ 
+                  mt: 4, 
+                  py: 1.4, 
+                  fontWeight: 700, 
+                  borderRadius: '12px', 
+                  textTransform: 'none', 
+                  bgcolor: '#6366F1', 
+                  boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+                  '&:hover': {
+                    bgcolor: '#4F46E5',
+                  }
+                }}
               >
                 {loading ? <CircularProgress size={24} color="inherit" /> : "Complete Registration"}
               </Button>
@@ -212,7 +270,7 @@ function Register() {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} variant="filled" sx={{ width: "100%", borderRadius: 2 }}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} variant="filled" sx={{ width: "100%", borderRadius: '12px' }}>
           {snackbar.message}
         </Alert>
       </Snackbar>

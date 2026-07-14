@@ -70,29 +70,41 @@ function ForgotPassword() {
         alignItems: 'center',
         minHeight: '100vh',
         p: 2,
-        background: 'linear-gradient(135deg, #3654F4 0%, #4A1BF1 40%, #3C1A77 100%)',
-        boxShadow: 'inset 0px 4px 20px rgba(74, 27, 241, 0.3)',
+        background: 'radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 45%), #090D1A',
       }}
     >
       <MainAuthCard 
         leftContent={
           <Box 
             sx={{
-              maxWidth: 350,
               width: "100%",
               height: "100%", 
-              flex: 1, // Tells the box to grow and fill the parent flex container
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center",
-              gap: 1.5,
+              alignItems: "flex-start",
+              gap: 2,
+              color: 'white'
             }}
           >
-            <Typography variant="h4" fontWeight="bold">PowerBites</Typography>
-            <Typography variant="h6" sx={{ opacity: 0.9, textAlign: 'center' }}>
-              Don't worry, we've got you covered!
+            <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Grovia
             </Typography>
+            <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
+              E-Commerce Web Application
+            </Typography>
+            
+            <Box sx={{ width: '60px', height: '4px', bgcolor: '#6366F1', borderRadius: '2px', my: 1 }} />
+
+            <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
+              <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                Security and trust form the foundation of Grovia. Rest assured, your credentials are protected with our multi-layered authentication.
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
+                — Grovia Security
+              </Typography>
+            </Box>
           </Box>
         } 
         rightContent={
@@ -122,6 +134,11 @@ function ForgotPassword() {
                   helperText={emailError}
                   autoComplete="email"
                   margin="normal"
+                  slotProps={{
+                    input: {
+                      sx: { borderRadius: '12px' }
+                    }
+                  }}
                 />
 
                 <Button
@@ -129,7 +146,18 @@ function ForgotPassword() {
                   fullWidth
                   variant="contained"
                   disabled={!isFormValid || loading}
-                  sx={{ mt: 3, py: 1.2, fontWeight: 'bold' }}
+                  sx={{ 
+                    mt: 4, 
+                    py: 1.4, 
+                    fontWeight: 700, 
+                    borderRadius: '12px', 
+                    textTransform: 'none', 
+                    bgcolor: '#6366F1', 
+                    boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+                    '&:hover': {
+                      bgcolor: '#4F46E5',
+                    }
+                  }}
                 >
                   {loading ? <CircularProgress size={24} color="inherit" /> : "Send Recovery OTP"}
                 </Button>
@@ -153,36 +181,35 @@ function ForgotPassword() {
                     width: 60,
                     height: 60,
                     borderRadius: '50%',
-                   bgcolor: 'rgba(74, 27, 241, 0.1)',
-    fontSize: '28px', // Controls emoji size
+                    bgcolor: 'rgba(99, 102, 241, 0.1)',
+                    fontSize: '28px', // Controls emoji size
                     mb: 2
                   }}
                 >
-                 ✉️
+                  ✉️
                 </Box>
-                <Typography variant="body1" fontWeight="medium" gutterBottom>
+                <Typography variant="body1" fontWeight="bold" gutterBottom sx={{ color: '#0f172a' }}>
                   Reset Link Dispatched!
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                  We have sent a secure verification link to <strong>{email}</strong>. Please check your inbox and spam folder.
+                  We have sent a secure verification code to <strong>{email}</strong>. Please check your inbox.
                 </Typography>
                 <Button
                   variant="outlined"
                   fullWidth
                   onClick={() => setIsSubmitted(false)}
-                  sx={{ py: 1, borderColor: '#4A1BF1', color: '#4A1BF1', fontWeight: 'bold',mt:2 }}
+                  sx={{ py: 1.2, borderColor: '#6366F1', color: '#6366F1', fontWeight: 'bold', borderRadius: '12px', textTransform: 'none', mt: 2, '&:hover': { borderColor: '#4F46E5', color: '#4F46E5' } }}
                 >
-                  Resend Otp
+                  Resend OTP
                 </Button>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   fullWidth
                   onClick={() => navigate(`/forget/forgetverifyOtp`)}
-                  sx={{ py: 1, borderColor: '#4A1BF1', color: '#4A1BF1', fontWeight: 'bold',mt:2 }}
+                  sx={{ py: 1.2, bgcolor: '#6366F1', color: '#ffffff', fontWeight: 'bold', borderRadius: '12px', textTransform: 'none', mt: 2, '&:hover': { bgcolor: '#4F46E5' } }}
                 >
-                  VerifyOtp
+                  Verify OTP
                 </Button>
-
               </Box>
             )}
             
@@ -198,7 +225,7 @@ function ForgotPassword() {
               <Typography
                 variant="body2"
                 sx={{
-                  color: "#4A1BF1",
+                  color: "#6366F1",
                   fontWeight: "bold",
                   cursor: "pointer",
                   "&:hover": { textDecoration: "underline" },
@@ -217,7 +244,7 @@ function ForgotPassword() {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%", borderRadius: '12px' }}>
           {snackbar.message}
         </Alert>
       </Snackbar>

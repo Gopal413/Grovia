@@ -22,7 +22,7 @@ export default function PaymentButton({ amount, addressId, coupon_id = "" }) {
         amount: order.amount,
         currency: order.currency,
         order_id: order.id,
-        name: "Powerbites",
+        name: "Grovia",
         description: "Order Payment",
 
         handler: async function (response) {

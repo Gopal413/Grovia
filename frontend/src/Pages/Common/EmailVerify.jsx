@@ -50,7 +50,7 @@ function EmailVerify() {
       sx={{ 
         width: '100%', 
         minHeight: '100vh', 
-        background: 'linear-gradient(180deg, #3519B3 0%, #1E1154 100%)', 
+        background: 'radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 45%), #090D1A', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
@@ -59,21 +59,43 @@ function EmailVerify() {
     >
       <MainAuthCard 
         leftContent={
-          <Stack sx={{ maxWidth: 360, width: "100%", textAlign: "center", color: "#fff", px: 2 }} spacing={2}>
-            <Typography variant="h3" fontWeight={800} letterSpacing={-0.5}>PowerBites</Typography>
-            <Typography variant="h5" sx={{ fontWeight: 600, color: '#facc15' }}>
-              Let's Secure Your Account
+          <Box 
+            sx={{
+              width: "100%",
+              height: "100%", 
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              gap: 2,
+              color: 'white'
+            }}
+          >
+            <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Grovia
             </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.85, lineHeight: 1.6 }}>
-              Discover premium dry fruits and healthy snacks, delivered fresh to your door. Enter your email address to get started.
+            <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
+              E-Commerce Web Application
             </Typography>
-          </Stack>
+            
+            <Box sx={{ width: '60px', height: '4px', bgcolor: '#6366F1', borderRadius: '2px', my: 1 }} />
+
+            <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
+              <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                Discover fresh, homemade snacks and gourmet sweets, crafted with hygiene and passion. Your gateway to local culinary delights.
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
+                — Grovia Flavors
+              </Typography>
+            </Box>
+          </Box>
         }
         rightContent={
           <AuthCard title="Verify Email" sx={{ width: "100%", boxShadow: "none", bgcolor: "transparent" }}>
             <Box component="form" onSubmit={handleEmailSubmit} noValidate sx={{ mt: 1 }}>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Please share your email address to receive your 6-digit dynamic authentication pass.
+                Please share your email address to receive your 4-digit dynamic authentication pass.
               </Typography>
 
               <TextField
@@ -87,6 +109,11 @@ function EmailVerify() {
                 autoComplete="email"
                 margin="normal"
                 required
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
 
               <Button
@@ -94,7 +121,18 @@ function EmailVerify() {
                 fullWidth
                 variant="contained"
                 disabled={!isFormValid || loading}
-                sx={{ mt: 3, py: 1.3, fontWeight: 700, bgcolor: '#4A1BF1', textTransform: 'none', borderRadius: 2 }}
+                sx={{ 
+                  mt: 4, 
+                  py: 1.4, 
+                  fontWeight: 700, 
+                  borderRadius: '12px', 
+                  textTransform: 'none', 
+                  bgcolor: '#6366F1', 
+                  boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+                  '&:hover': {
+                    bgcolor: '#4F46E5',
+                  }
+                }}
               >
                 {loading ? <CircularProgress size={24} color="inherit" /> : "Send Verification Pass"}
               </Button>
@@ -104,7 +142,7 @@ function EmailVerify() {
               <Typography variant="body2" color="text.secondary">Already have an account?</Typography>
               <Typography
                 variant="body2"
-                sx={{ color: "#4A1BF1", fontWeight: "bold", cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
+                sx={{ color: "#6366F1", fontWeight: "bold", cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
                 onClick={() => navigate("/login")}
               >
                 Login
@@ -120,7 +158,7 @@ function EmailVerify() {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} variant="filled" sx={{ width: "100%", borderRadius: 2 }}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} variant="filled" sx={{ width: "100%", borderRadius: '12px' }}>
           {snackbar.message}
         </Alert>
       </Snackbar>

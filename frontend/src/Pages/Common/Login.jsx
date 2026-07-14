@@ -107,8 +107,7 @@ function Login() {
         alignItems: 'center',
         minHeight: '100vh',
         p: 2,
-        background: 'linear-gradient(135deg, #3654F4 0%, #4A1BF1 40%, #3C1A77 100%)',
-        boxShadow: 'inset 0px 4px 20px rgba(74, 27, 241, 0.3)',
+        background: 'radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 45%), #090D1A',
       }}
     >
       <MainAuthCard 
@@ -120,20 +119,34 @@ function Login() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center",
-              gap: 1.5,
-              p: 4,
-              // bgcolor: 'rgba(255, 192, 203, 0.15)', 
-               color: 'white'
+              alignItems: "flex-start",
+              gap: 2,
+              color: 'white'
             }}
           >
-            <Typography variant="h4" fontWeight="bold">PowerBites</Typography>
-            <Typography variant="h6">Welcome Back!</Typography>
+            <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Grovia
+            </Typography>
+            <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
+              E-Commerce Web Application
+            </Typography>
+            
+            <Box sx={{ width: '60px', height: '4px', bgcolor: '#6366F1', borderRadius: '2px', my: 1 }} />
+
+            <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
+              <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                Connecting local kitchens and home-based artisans to food enthusiasts everywhere. Authenticity in every bite, convenience in every click.
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
+                — Grovia Marketplace
+              </Typography>
+            </Box>
           </Box>
         } 
         rightContent={
           <AuthCard 
-            title="Login" 
+            title="Welcome Back" 
             sx={{
               width: '100%',
               boxShadow: 'none',
@@ -143,7 +156,7 @@ function Login() {
             <Box component="form" onSubmit={handleSubmit} noValidate>
               <TextField
                 fullWidth
-                label="Email"
+                label="Email Address"
                 name="email"
                 type="email"
                 value={formData.email}
@@ -152,6 +165,11 @@ function Login() {
                 helperText={emailError}
                 autoComplete="email"
                 margin="normal"
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
               <PasswordField
                 fullWidth
@@ -163,28 +181,45 @@ function Login() {
                 helperText={passwordError}
                 autoComplete="current-password"
                 margin="normal"
+                slotProps={{
+                  input: {
+                    sx: { borderRadius: '12px' }
+                  }
+                }}
               />
               <Typography
                 variant="body2"
                 sx={{
-                  color: "#4A1BF1",
+                  color: "#6366F1",
                   display:'flex',
                   justifyContent:'flex-end',
                   fontWeight: "bold",
                   cursor: "pointer",
+                  mt: 1,
                   "&:hover": { textDecoration: "underline" },
                 }}
-                onClick={() => navigate("/forget")} // Assuming forget route name
+                onClick={() => navigate("/forget")}
               >
-                Forget Password
+                Forgot Password?
               </Typography>
-
+ 
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 disabled={!isFormValid || loading}
-                sx={{ mt: 3, py: 1.2, fontWeight: 'bold' }}
+                sx={{ 
+                  mt: 4, 
+                  py: 1.4, 
+                  fontWeight: 700, 
+                  borderRadius: '12px', 
+                  textTransform: 'none', 
+                  bgcolor: '#6366F1', 
+                  boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)',
+                  '&:hover': {
+                    bgcolor: '#4F46E5',
+                  }
+                }}
               >
                 {loading ? <CircularProgress size={24} color="inherit" /> : "Sign In"}
               </Button>
@@ -193,31 +228,27 @@ function Login() {
             <Box
               sx={{
                 display: "flex",
-                
                 alignItems: "center",
                 gap: "8px",
-                mt: 3,
+                mt: 4,
+                justifyContent: 'center'
               }}
             >
-              
-              
               <Typography variant="body2" color="text.secondary">
                 Don't have an account?
               </Typography>
               <Typography
                 variant="body2"
                 sx={{
-                  color: "#4A1BF1",
+                  color: "#6366F1",
                   fontWeight: "bold",
                   cursor: "pointer",
                   "&:hover": { textDecoration: "underline" },
                 }}
-                onClick={() => navigate("/verify-email")} // Assuming register route name
+                onClick={() => navigate("/verify-email")}
               >
                 Sign Up
               </Typography>
-            
-              
             </Box>
           </AuthCard>
         } 
@@ -228,7 +259,7 @@ function Login() {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%", borderRadius: '12px' }}>
           {snackbar.message}
         </Alert>
       </Snackbar>

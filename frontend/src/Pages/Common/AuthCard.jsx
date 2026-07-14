@@ -14,24 +14,28 @@ function AuthCard({ title, children, sx }) {
       <Card
         sx={{
           width: "100%",
-          maxWidth: 350,
-          borderRadius: 3,
-          boxShadow: 5,
+          maxWidth: 380,
+          borderRadius: 4,
+          boxShadow: 'none',
+          bgcolor: 'transparent',
           ...sx
         }}
       >
         <CardContent
           sx={{
-            p: { xs: 1, sm: 2 },
+            p: { xs: 0, sm: 1 },
           }}
         >
-          <Typography 
-          variant="h4" 
-          align="center" 
-          
-          >
-            {title}
-        </Typography>
+          {title && (
+            <Typography 
+              variant="h4" 
+              align="center" 
+              fontWeight={800}
+              sx={{ color: '#0f172a', mb: 3, letterSpacing: '-0.5px' }}
+            >
+              {title}
+            </Typography>
+          )}
           {children}
         </CardContent>
       </Card>

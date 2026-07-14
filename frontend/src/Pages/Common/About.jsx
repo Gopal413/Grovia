@@ -74,7 +74,7 @@ export default function About() {
             letterSpacing: -2,
           }}
         >
-          Powerbites
+          Grovia
         </Typography>
 
         <Typography

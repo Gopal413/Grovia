@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Box, Typography, Paper, Container, Button, Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -75,7 +75,7 @@ const banne = [
 function HomemadeFoodBanner() {
   const dispatch = useDispatch();
   const { items: activeBanners, status } = useSelector((state) => state.banners);
-  const banners = activeBanners.filter((item) => item.status === 'Active')
+  const banners = useMemo(() => activeBanners.filter((item) => item.status === 'Active'), [activeBanners]);
   
   const [currentBanner, setCurrentBanner] = useState(0);
   const navigate = useNavigate();

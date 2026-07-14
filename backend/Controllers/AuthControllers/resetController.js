@@ -89,12 +89,22 @@ async function forgotPassword(req,res) {
 async function VerifyOtp(req,res) {
     try {
         let head = req.headers.authorization;
+        if (!head || !head.startsWith("Bearer ")) {
+            return res.status(401).json({
+                message: "Authorization token is missing or invalid"
+            });
+        }
         let token = head.split(" ")[1];
-        let body = req.body;
+        if (!token || token === "null" || token === "undefined") {
+            return res.status(401).json({
+                message: "Session token is invalid. Please verify your email again."
+            });
+        }
 
         let decoded = decodeToken(token, res);
         if (res.headersSent) return;
 
+        let body = req.body;
         let result = await otpModel.findOne({ otp: body.otp, email: decoded.email })
         
         if (!result) {
@@ -128,8 +138,17 @@ async function VerifyOtp(req,res) {
 async function resetPassword(req,res){
      try {
         let head = req.headers.authorization;
+        if (!head || !head.startsWith("Bearer ")) {
+            return res.status(401).json({
+                message: "Authorization token is missing or invalid"
+            });
+        }
         let token = head.split(" ")[1];
-
+        if (!token || token === "null" || token === "undefined") {
+            return res.status(401).json({
+                message: "Session token is invalid. Please verify your email again."
+            });
+        }
 
         let decoded = decodeToken(token, res);
         if (res.headersSent) return;

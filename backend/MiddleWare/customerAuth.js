@@ -22,18 +22,22 @@ function isCustomer(req, res, next) {
         });
     }
 
-    let decoded = jwt.verify(token, process.env.JWTKEY);
+    try {
+        let decoded = jwt.verify(token, process.env.JWTKEY);
 
-    if (decoded.role !== "customer") {
-        return res.status(403).json({
-            message: "Customer access only"
+        if (decoded.role !== "customer") {
+            return res.status(403).json({
+                message: "Customer access only"
+            });
+        }
+        console.log("decode ", decoded);
+        req.userId = decoded.id;
+        next();
+    } catch (err) {
+        return res.status(401).json({
+            message: "Authentication failed: " + err.message
         });
     }
-    console.log("decode ",decoded)
-    req.userId = decoded.id;
-    // req.role = decoded.role;
-
-    next();
 }
 
 module.exports = isCustomer;

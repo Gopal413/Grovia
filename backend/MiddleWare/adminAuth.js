@@ -22,17 +22,22 @@ function isAdmin(req, res, next) {
         });
     }
 
-    let decoded = jwt.verify(token, process.env.JWTKEY);
+    try {
+        let decoded = jwt.verify(token, process.env.JWTKEY);
 
-    if (decoded.role !== "admin") {
-        return res.status(403).json({
-            message: "Admin access only"
+        if (decoded.role !== "admin") {
+            return res.status(403).json({
+                message: "Admin access only"
+            });
+        }
+
+        req.userId = decoded.id;
+        next();
+    } catch (err) {
+        return res.status(401).json({
+            message: "Authentication failed: " + err.message
         });
     }
-
-    req.userId = decoded.id;
-
-    next();
 }
 
 module.exports = isAdmin;
