@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
-import { deleteProducts } from "../../../Redux/Slices/ProductSlice";
+//import { deleteProducts } from "../../../Redux/Slices/ProductSlice";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import axios from "axios";
 import { PrimaryButton } from "../../../Components/Common/Buttons";
@@ -20,6 +20,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import { deleteProducts } from "../../../Redux/Slices/productSlice";
 
 export default function ProductCard({ product }) {
   const [open, setOpen] = React.useState(false);
