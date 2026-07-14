@@ -7,7 +7,7 @@ function MainAuthCard({ leftContent, rightContent }) {
     <Grid
       container
       sx={{
-        maxWidth: { xs: 400, md: 960 },
+        maxWidth: { xs: 460, md: 960 },
         width: "100%",
         borderRadius: "24px",
         overflow: "hidden",
@@ -21,7 +21,7 @@ function MainAuthCard({ leftContent, rightContent }) {
       }}
     >
       {/* Left Column */}
-      <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "flex" } }}>
         <Box
           sx={{
             flex: 1,
