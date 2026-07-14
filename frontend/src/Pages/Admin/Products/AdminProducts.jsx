@@ -33,7 +33,8 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, postProducts } from "../../../Redux/Slices/ProductSlice";
+//import { getProducts, postProducts } from "../../../Redux/Slices/ProductSlice";
+
 import { useNavigate } from "react-router-dom";
 import { PrimaryButton } from "../../../Components/Common/Buttons";
 import Input from "@mui/material/Input";
@@ -47,6 +48,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
+import { getProducts, postProducts } from "../../../Redux/Slices/productSlice";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
