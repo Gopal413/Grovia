@@ -3,7 +3,7 @@ const isAdmin = require('../../MiddleWare/adminAuth');
 const {createCompany,updateCompany,getCompany,deleteCompany} = require("../../Controllers/CompanyController/Comapny")
 const router = express.Router();
  
-const upload = require("../../Config/multerConfig")
+const upload = require("../../config/multerConfig")
 router.post("/add",isAdmin,upload.single("file"),createCompany );
 router.put("/update/:id", isAdmin, upload.single("file"), updateCompany);
 router.delete("/delete/:id", isAdmin, deleteCompany);
