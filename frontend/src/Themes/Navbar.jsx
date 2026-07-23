@@ -107,7 +107,7 @@ function ResponsiveAppBar({company}) {
               fontSize: { md: "1.1rem", lg: "1.2rem" },
             }}
           >
-            {company?.companyName}
+            Grovia
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -211,7 +211,7 @@ function ResponsiveAppBar({company}) {
               fontSize: { xs: "0.95rem", sm: "1.1rem" },
             }}
           >
-            {company?.companyName}
+            Grovia
           </Typography>
 
           <Box
