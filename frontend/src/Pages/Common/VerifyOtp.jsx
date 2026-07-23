@@ -36,7 +36,7 @@ function VerifyOtp() {
     try {
       const response = await api.post("/auth/verifyOtp", { otp });
       
-      localStorage.setItem("grovia_auth_handshake_token", response.data.token);
+      localStorage.setItem("kritiathome_auth_handshake_token", response.data.token);
       
       setOtp("");
       setSnackbar({ open: true, message: "Security pass authenticated! Loading registration workspace...", severity: "success" });
@@ -76,7 +76,7 @@ function VerifyOtp() {
             }}
           >
             <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Grovia
+              KritiAtHome
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
               E-Commerce Web Application
@@ -90,7 +90,7 @@ function VerifyOtp() {
                 A seamless digital experience that brings you closer to your favorite homemade tastes. Safe, secure, and instant.
               </Typography>
               <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
-                — Grovia Experience
+                — KritiAtHome Experience
               </Typography>
             </Box>
           </Box>

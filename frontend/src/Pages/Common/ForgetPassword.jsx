@@ -88,7 +88,7 @@ function ForgotPassword() {
             }}
           >
             <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Grovia
+              KritiAtHome
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
               E-Commerce Web Application
@@ -99,10 +99,10 @@ function ForgotPassword() {
             <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
               <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
               <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
-                Security and trust form the foundation of Grovia. Rest assured, your credentials are protected with our multi-layered authentication.
+                Security and trust form the foundation of KritiAtHome. Rest assured, your credentials are protected with our multi-layered authentication.
               </Typography>
               <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
-                — Grovia Security
+                — KritiAtHome Security
               </Typography>
             </Box>
           </Box>

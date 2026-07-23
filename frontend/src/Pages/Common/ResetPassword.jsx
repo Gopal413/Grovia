@@ -116,7 +116,7 @@ function ResetPassword() {
             }}
           >
             <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Grovia
+              KritiAtHome
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
               E-Commerce Web Application
@@ -130,7 +130,7 @@ function ResetPassword() {
                 We prioritize your security to ensure a safe shopping experience. Choose a strong password to protect your account and transaction history.
               </Typography>
               <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
-                — Grovia Security
+                — KritiAtHome Security
               </Typography>
             </Box>
           </Box>

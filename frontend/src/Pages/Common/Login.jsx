@@ -125,7 +125,7 @@ function Login() {
             }}
           >
             <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Grovia
+              KritiAtHome
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
               E-Commerce Web Application
@@ -139,7 +139,7 @@ function Login() {
                 Connecting local kitchens and home-based artisans to food enthusiasts everywhere. Authenticity in every bite, convenience in every click.
               </Typography>
               <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
-                — Grovia Marketplace
+                — KritiAtHome Marketplace
               </Typography>
             </Box>
           </Box>

@@ -24,7 +24,7 @@ function Register() {
   });
 
   useEffect(() => {
-    const securityToken = localStorage.getItem("grovia_auth_handshake_token");
+    const securityToken = localStorage.getItem("kritiathome_auth_handshake_token");
     console.log("securityToken :",securityToken)
     if (!securityToken) {
       setSnackbar({ open: true, message: "Session tracing timeline invalid. Re-routing to entry.", severity: "error" });
@@ -83,14 +83,14 @@ function Register() {
 
       let res = await api.post("/auth/register", registrationPayload, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("grovia_auth_handshake_token")}`,
+          Authorization: `Bearer ${localStorage.getItem("kritiathome_auth_handshake_token")}`,
         },
       });
       console.log("register :",res)
       showToast("Account created successfully!", "success");
       
       // Complete cleanup of temporary storage keys
-      //localStorage.removeItem("grovia_auth_handshake_token");
+      //localStorage.removeItem("kritiathome_auth_handshake_token");
 
       setFormData({ name: "", password: "", confirmPassword: "", phone: "" });
       setTimeout(() => navigate("/login"), 1500);
@@ -129,7 +129,7 @@ function Register() {
             }}
           >
             <Typography variant="h3" fontWeight="900" sx={{ letterSpacing: '-1.5px', background: 'linear-gradient(135deg, #A78BFA 0%, #6366F1 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Grovia
+              KritiAtHome
             </Typography>
             <Typography variant="subtitle1" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 500, letterSpacing: '0.5px' }}>
               E-Commerce Web Application
@@ -140,10 +140,10 @@ function Register() {
             <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 1.5, textAlign: 'left', width: '100%' }}>
               <Typography variant="h2" sx={{ color: 'rgba(255, 255, 255, 0.08)', fontFamily: 'serif', lineHeight: 0.1, mt: 1, fontSize: '4rem' }}>“</Typography>
               <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.85)', fontStyle: 'italic', fontSize: '1.05rem', lineHeight: 1.6 }}>
-                Empowering local cooks and supporting small businesses. Grovia helps you start your culinary journey and build a sustainable local economy.
+                Empowering local cooks and supporting small businesses. KritiAtHome helps you start your culinary journey and build a sustainable local economy.
               </Typography>
               <Typography variant="body2" sx={{ color: '#A78BFA', fontWeight: 700, mt: 1, textTransform: 'uppercase', letterSpacing: '1.5px', fontSize: '0.8rem' }}>
-                — Grovia Community
+                — KritiAtHome Community
               </Typography>
             </Box>
           </Box>

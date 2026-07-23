@@ -44,7 +44,7 @@ export default function AdminHome() {
   return (
     <Box sx={{ p: { xs: 2, md: 4 }, bgcolor: '#f8fafc', minHeight: '100vh' }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" fontWeight="900" color="#0f172a">Grovia Business Suite</Typography>
+        <Typography variant="h4" fontWeight="900" color="#0f172a">KritiAtHome Business Suite</Typography>
         <Typography variant="body2" color="textSecondary">Enterprise Data Ledger & Analytics Operations Desk</Typography>
       </Box>
 

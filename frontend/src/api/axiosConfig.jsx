@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://grovia-x18y.onrender.com'
+    baseURL: 'https://kritiathome.onrender.com'
 })
 
 api.interceptors.request.use(
@@ -39,7 +39,7 @@ api.interceptors.response.use(
                 }
 
                 // Make a request to your refresh token endpoint
-                const { data } = await axios.post('https://grovia-x18y.onrender.com/auth/refresh-token', 
+                const { data } = await axios.post('https://kritiathome-x18y.onrender.com/auth/refresh-token', 
                     {refreshToken: refreshToken},
                    
                 );

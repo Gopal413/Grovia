@@ -76,7 +76,7 @@ export default function Sidebar({ sidebarOpen, mobileOpen, onMobileClose, onLogo
              <span style={{ color: '#A78BFA' }}>  {company?.companyName}</span>
           </Typography></>
         ) : (
-          <Tooltip title="Grovia" placement="right">
+          <Tooltip title="KritiAtHome" placement="right">
             <Box
               component="img"
               src={company.companyImage}
